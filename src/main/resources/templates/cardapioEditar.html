@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset ="UTF-8"/>
+		<meta name ="viewport" content="width=device-width" />
+		<title>Cardápio Digital</title>
+		<link th:href ="@{/webjars/bootstrap/css/bootstrap.min.css}"rel="stylesheet" />
+		<link th:href ="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"rel="stylesheet" />
+	</head>
+	<body>
+		<div class="panel panel-default"style="margin: 10px">
+			<div class="panel-heading">
+				<h1 class="panel-title">Cardápio Digital</h1>
+			</div>
+			
+			<div class="panel-body">
+				<form class="form-inline" method="POST" th:object="${pizza}" style="margin: 20px 0" th:action="@{/cardapio}">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/>
+						<input type="text" class="form-control" placeholder="Valor" th:field="*{valor}"/>
+						<input type="hidden" class="form-control" placeholder="Id" th:field="*{id}"/>
+						<button type="submit" class="btn btn-primary">Editar</button>
+					</div>
+				</form>
+			</div>		
+			
+		</div>
+		
+		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>

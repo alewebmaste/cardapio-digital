@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset ="UTF-8"/>
+		<meta name ="viewport" content="width=device-width" />
+		<title>Cardápio Digital</title>
+		<link th:href ="@{/webjars/bootstrap/css/bootstrap.min.css}"rel="stylesheet" />
+		<link th:href ="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"rel="stylesheet" />
+	</head>
+	<body>
+		<div class="panel panel-default"style="margin: 10px">
+			<div class="panel-heading">
+				<h1 class="panel-title">Cardápio Digital</h1>
+			</div>
+			
+			<div class="panel-body">
+				<form class="form-inline" method="POST" th:object="${pizza}" style="margin: 20px 0" th:action="@{/cardapio}">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/>
+						<input type="text" class="form-control" placeholder="Valor" th:field="*{valor}"/>
+						<button type="submit" class="btn btn-primary">Adicionar</button>
+					</div>
+				</form>
+			
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Valor</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr th:each="pizza : ${pizzas}">
+							<td th:text="${pizza.nome}"></td>
+							<td th:text="${pizza.valor}"></td>
+							<td><a th:href="@{'/cardapio/editar?id=' + ${pizza.id}}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalDeEdicao">Editar</a></td>
+							<td><a th:href="@{'/cardapio/excluir?id=' + ${pizza.id}}" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalDeEdicao">Excluir</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<!-- Modal de Edição -->
+			<div class="modal fade" id="modalDeEdicao" tabindex="-1" role="dialog" aria-labelledby="modalDeEdicaoLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      
+			    </div>
+			  </div>
+			</div>
+			
+		</div>
+		
+		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>
